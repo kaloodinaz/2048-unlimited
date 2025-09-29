@@ -1,0 +1,1042 @@
+<html>
+<head>
+  <meta charset="utf-8">
+   <link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#151515" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 Unlimited | Play Online</title>
+   <meta name="description" content="Play 2048 Unlimited, the endless version of the classic 2048 puzzle game. Combine tiles, reach higher numbers, and keep going without limits. Enjoy endless fun and strategy online for free!">
+  <link rel="shortcut icon" href="https://kaloodinaz.github.io/2048-unlimited/favicon.ico">
+<link rel="apple-touch-icon" href="https://kaloodinaz.github.io/2048-reverse/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" href="https://kaloodinaz.github.io/2048-reverse/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
+  <link rel="apple-touch-startup-image" href="https://kaloodinaz.github.io/2048-reverse/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
+ <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+    <meta property="og:title" content="2048 Unlimited"/>
+  <meta property="og:site_name" content="kaloodinaz" />
+  <meta property="og:description" content="Challenge yourself with 2048 Unlimited, the infinite twist on the popular 2048 game. Merge tiles, climb to huge numbers, and play endlessly without restrictions."/>
+  <meta property="og:image" content="https://kaloodinaz.github.io/2048-unlimited/og-image.jpg"/>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap');
+html,body{margin:0;padding:0;background:#faf8ef;color:#776e65;font-family:"Roboto","Helvetica Neue",Arial,sans-serif;font-size:18px}
+body{margin:20px 0}
+input{display:inline-block;background:#8f7a66;border-radius:3px;padding:0 20px;text-decoration:none;color:#f9f6f2;height:40px;line-height:42px;cursor:pointer;font:inherit;border:none;outline:none;box-sizing:border-box;font-weight:700;margin:0;-webkit-appearance:none;-moz-appearance:none;appearance:none}
+input[type="text"],input[type="email"]{cursor:auto;background:#fcfbf9;font-weight:400;color:#776e65;padding:0 15px}
+input[type="text"]::-webkit-input-placeholder,input[type="email"]::-webkit-input-placeholder{color:#9d948c}
+input[type="text"]::-moz-placeholder,input[type="email"]::-moz-placeholder{color:#9d948c}
+input[type="text"]:-ms-input-placeholder,input[type="email"]:-ms-input-placeholder{color:#9d948c}
+.heading:after{content:"";display:block;clear:both}
+h1.title{font-size:50px;font-weight:700;margin:0;display:block;float:left}
+@-webkit-keyframes move-up {
+0%{top:25px;opacity:1}
+100%{top:-50px;opacity:0}
+}
+@-moz-keyframes move-up {
+0%{top:25px;opacity:1}
+100%{top:-50px;opacity:0}
+}
+@keyframes move-up {
+0%{top:25px;opacity:1}
+100%{top:-50px;opacity:0}
+}
+.scores-container{float:right;text-align:right}
+.score-container,.best-container{position:relative;display:inline-block;background:#67625d;padding:15px 25px;font-size:25px;height:25px;line-height:47px;font-weight:700;border-radius:3px;color:#fff;margin-top:8px;text-align:center}
+.score-container:after,.best-container:after{position:absolute;width:100%;top:10px;left:0;text-transform:uppercase;font-size:13px;line-height:13px;text-align:center;color:#eee4da}
+.score-container .score-addition,.best-container .score-addition{position:absolute;right:30px;color:red;font-size:25px;line-height:25px;font-weight:700;color:#776e65e6;z-index:100;-webkit-animation:move-up 600ms ease-in;-moz-animation:move-up 600ms ease-in;animation:move-up 600ms ease-in;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;animation-fill-mode:both}
+.score-container:after{content:"Score"}
+.best-container:after{content:"Best"}
+p{margin:0 20px 10px;line-height:1.65}
+a{color:#776e65;font-weight:700;text-decoration:underline;cursor:pointer}
+strong.important{text-transform:uppercase}
+hr{border:none;border-bottom:1px solid #d8d4d0;margin-top:10px;margin-bottom:10px}
+.container{width:650px;margin:0 auto}
+@-webkit-keyframes fade-in {
+0%{opacity:0}
+100%{opacity:1}
+}
+@-moz-keyframes fade-in {
+0%{opacity:0}
+100%{opacity:1}
+}
+@keyframes fade-in {
+0%{opacity:0}
+100%{opacity:1}
+}
+@-webkit-keyframes slide-up {
+0%{margin-top:32%}
+100%{margin-top:20%}
+}
+@-moz-keyframes slide-up {
+0%{margin-top:32%}
+100%{margin-top:20%}
+}
+@keyframes slide-up {
+0%{margin-top:32%}
+100%{margin-top:20%}
+}
+.game-container{margin-top:40px;position:relative;padding:8px;cursor:default;-webkit-touch-callout:none;-ms-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-ms-touch-action:none;touch-action:none;background:#bbada0;border-radius:6px;width:610px;height:610px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.game-message{display:none;position:absolute;top:0;right:0;bottom:0;left:0;background:#eee4daba;z-index:100;padding-top:40px;text-align:center;-webkit-animation:fade-in 800ms ease 1200ms;-moz-animation:fade-in 800ms ease 1200ms;animation:fade-in 800ms ease 1200ms;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;animation-fill-mode:both}
+.game-message p{font-size:60px;font-weight:700;height:60px;line-height:60px;margin-top:222px}
+.game-message .lower{display:block;margin-top:59px}
+.game-message a{display:inline-block;background:#8f7a66;border-radius:3px;padding:0 20px;text-decoration:none;color:#f9f6f2;height:40px;line-height:42px;cursor:pointer;margin-left:9px}
+.game-message a.keep-playing-button{display:none}
+.game-message .score-sharing{display:inline-block;vertical-align:middle;margin-left:10px}
+.game-message.game-won{background:#edc22e80;color:#f9f6f2}
+.game-message.game-won a.keep-playing-button{display:inline-block}
+.game-message.game-won,.game-message.game-over{display:block}
+.grid-container{position:absolute;z-index:1}
+.grid-row{margin-bottom:7px}
+.grid-row:last-child{margin-bottom:0}
+.grid-row:after{content:"";display:block;clear:both}
+.grid-cell{width:53px;height:53px;margin-right:7px;float:left;border-radius:3px;background:#eee4da59}
+.grid-cell:last-child{margin-right:0}
+.tile-container{position:absolute;z-index:2}
+.tile,.tile .tile-inner{width:53px;height:53px;line-height:53px}
+.tile.tile-position-1-1{transform:translate(0px,0px)}
+.tile.tile-position-1-2{transform:translate(0px,60px)}
+.tile.tile-position-1-3{transform:translate(0px,120px)}
+.tile.tile-position-1-4{transform:translate(0px,180px)}
+.tile.tile-position-1-5{transform:translate(0px,240px)}
+.tile.tile-position-1-6{transform:translate(0px,300px)}
+.tile.tile-position-1-7{transform:translate(0px,360px)}
+.tile.tile-position-1-8{transform:translate(0px,420px)}
+.tile.tile-position-1-9{transform:translate(0px,480px)}
+.tile.tile-position-1-10{transform:translate(0px,540px)}
+.tile.tile-position-1-11{transform:translate(0px,600px)}
+.tile.tile-position-1-12{transform:translate(0px,660px)}
+.tile.tile-position-1-13{transform:translate(0px,720px)}
+.tile.tile-position-1-14{transform:translate(0px,780px)}
+.tile.tile-position-1-15{transform:translate(0px,840px)}
+.tile.tile-position-1-16{transform:translate(0px,900px)}
+.tile.tile-position-2-1{transform:translate(60px,0px)}
+.tile.tile-position-2-2{transform:translate(60px,60px)}
+.tile.tile-position-2-3{transform:translate(60px,120px)}
+.tile.tile-position-2-4{transform:translate(60px,180px)}
+.tile.tile-position-2-5{transform:translate(60px,240px)}
+.tile.tile-position-2-6{transform:translate(60px,300px)}
+.tile.tile-position-2-7{transform:translate(60px,360px)}
+.tile.tile-position-2-8{transform:translate(60px,420px)}
+.tile.tile-position-2-9{transform:translate(60px,480px)}
+.tile.tile-position-2-10{transform:translate(60px,540px)}
+.tile.tile-position-2-11{transform:translate(60px,600px)}
+.tile.tile-position-2-12{transform:translate(60px,660px)}
+.tile.tile-position-2-13{transform:translate(60px,720px)}
+.tile.tile-position-2-14{transform:translate(60px,780px)}
+.tile.tile-position-2-15{transform:translate(60px,840px)}
+.tile.tile-position-2-16{transform:translate(60px,900px)}
+.tile.tile-position-3-1{transform:translate(120px,0px)}
+.tile.tile-position-3-2{transform:translate(120px,60px)}
+.tile.tile-position-3-3{transform:translate(120px,120px)}
+.tile.tile-position-3-4{transform:translate(120px,180px)}
+.tile.tile-position-3-5{transform:translate(120px,240px)}
+.tile.tile-position-3-6{transform:translate(120px,300px)}
+.tile.tile-position-3-7{transform:translate(120px,360px)}
+.tile.tile-position-3-8{transform:translate(120px,420px)}
+.tile.tile-position-3-9{transform:translate(120px,480px)}
+.tile.tile-position-3-10{transform:translate(120px,540px)}
+.tile.tile-position-3-11{transform:translate(120px,600px)}
+.tile.tile-position-3-12{transform:translate(120px,660px)}
+.tile.tile-position-3-13{transform:translate(120px,720px)}
+.tile.tile-position-3-14{transform:translate(120px,780px)}
+.tile.tile-position-3-15{transform:translate(120px,840px)}
+.tile.tile-position-3-16{transform:translate(120px,900px)}
+.tile.tile-position-4-1{transform:translate(180px,0px)}
+.tile.tile-position-4-2{transform:translate(180px,60px)}
+.tile.tile-position-4-3{transform:translate(180px,120px)}
+.tile.tile-position-4-4{transform:translate(180px,180px)}
+.tile.tile-position-4-5{transform:translate(180px,240px)}
+.tile.tile-position-4-6{transform:translate(180px,300px)}
+.tile.tile-position-4-7{transform:translate(180px,360px)}
+.tile.tile-position-4-8{transform:translate(180px,420px)}
+.tile.tile-position-4-9{transform:translate(180px,480px)}
+.tile.tile-position-4-10{transform:translate(180px,540px)}
+.tile.tile-position-4-11{transform:translate(180px,600px)}
+.tile.tile-position-4-12{transform:translate(180px,660px)}
+.tile.tile-position-4-13{transform:translate(180px,720px)}
+.tile.tile-position-4-14{transform:translate(180px,780px)}
+.tile.tile-position-4-15{transform:translate(180px,840px)}
+.tile.tile-position-4-16{transform:translate(180px,900px)}
+.tile.tile-position-5-1{transform:translate(240px,0px)}
+.tile.tile-position-5-2{transform:translate(240px,60px)}
+.tile.tile-position-5-3{transform:translate(240px,120px)}
+.tile.tile-position-5-4{transform:translate(240px,180px)}
+.tile.tile-position-5-5{transform:translate(240px,240px)}
+.tile.tile-position-5-6{transform:translate(240px,300px)}
+.tile.tile-position-5-7{transform:translate(240px,360px)}
+.tile.tile-position-5-8{transform:translate(240px,420px)}
+.tile.tile-position-5-9{transform:translate(240px,480px)}
+.tile.tile-position-5-10{transform:translate(240px,540px)}
+.tile.tile-position-5-11{transform:translate(240px,600px)}
+.tile.tile-position-5-12{transform:translate(240px,660px)}
+.tile.tile-position-5-13{transform:translate(240px,720px)}
+.tile.tile-position-5-14{transform:translate(240px,780px)}
+.tile.tile-position-5-15{transform:translate(240px,840px)}
+.tile.tile-position-5-16{transform:translate(240px,900px)}
+.tile.tile-position-6-1{transform:translate(300px,0px)}
+.tile.tile-position-6-2{transform:translate(300px,60px)}
+.tile.tile-position-6-3{transform:translate(300px,120px)}
+.tile.tile-position-6-4{transform:translate(300px,180px)}
+.tile.tile-position-6-5{transform:translate(300px,240px)}
+.tile.tile-position-6-6{transform:translate(300px,300px)}
+.tile.tile-position-6-7{transform:translate(300px,360px)}
+.tile.tile-position-6-8{transform:translate(300px,420px)}
+.tile.tile-position-6-9{transform:translate(300px,480px)}
+.tile.tile-position-6-10{transform:translate(300px,540px)}
+.tile.tile-position-6-11{transform:translate(300px,600px)}
+.tile.tile-position-6-12{transform:translate(300px,660px)}
+.tile.tile-position-6-13{transform:translate(300px,720px)}
+.tile.tile-position-6-14{transform:translate(300px,780px)}
+.tile.tile-position-6-15{transform:translate(300px,840px)}
+.tile.tile-position-6-16{transform:translate(300px,900px)}
+.tile.tile-position-7-1{transform:translate(360px,0px)}
+.tile.tile-position-7-2{transform:translate(360px,60px)}
+.tile.tile-position-7-3{transform:translate(360px,120px)}
+.tile.tile-position-7-4{transform:translate(360px,180px)}
+.tile.tile-position-7-5{transform:translate(360px,240px)}
+.tile.tile-position-7-6{transform:translate(360px,300px)}
+.tile.tile-position-7-7{transform:translate(360px,360px)}
+.tile.tile-position-7-8{transform:translate(360px,420px)}
+.tile.tile-position-7-9{transform:translate(360px,480px)}
+.tile.tile-position-7-10{transform:translate(360px,540px)}
+.tile.tile-position-7-11{transform:translate(360px,600px)}
+.tile.tile-position-7-12{transform:translate(360px,660px)}
+.tile.tile-position-7-13{transform:translate(360px,720px)}
+.tile.tile-position-7-14{transform:translate(360px,780px)}
+.tile.tile-position-7-15{transform:translate(360px,840px)}
+.tile.tile-position-7-16{transform:translate(360px,900px)}
+.tile.tile-position-8-1{transform:translate(420px,0px)}
+.tile.tile-position-8-2{transform:translate(420px,60px)}
+.tile.tile-position-8-3{transform:translate(420px,120px)}
+.tile.tile-position-8-4{transform:translate(420px,180px)}
+.tile.tile-position-8-5{transform:translate(420px,240px)}
+.tile.tile-position-8-6{transform:translate(420px,300px)}
+.tile.tile-position-8-7{transform:translate(420px,360px)}
+.tile.tile-position-8-8{transform:translate(420px,420px)}
+.tile.tile-position-8-9{transform:translate(420px,480px)}
+.tile.tile-position-8-10{transform:translate(420px,540px)}
+.tile.tile-position-8-11{transform:translate(420px,600px)}
+.tile.tile-position-8-12{transform:translate(420px,660px)}
+.tile.tile-position-8-13{transform:translate(420px,720px)}
+.tile.tile-position-8-14{transform:translate(420px,780px)}
+.tile.tile-position-8-15{transform:translate(420px,840px)}
+.tile.tile-position-8-16{transform:translate(420px,900px)}
+.tile.tile-position-9-1{transform:translate(480px,0px)}
+.tile.tile-position-9-2{transform:translate(480px,60px)}
+.tile.tile-position-9-3{transform:translate(480px,120px)}
+.tile.tile-position-9-4{transform:translate(480px,180px)}
+.tile.tile-position-9-5{transform:translate(480px,240px)}
+.tile.tile-position-9-6{transform:translate(480px,300px)}
+.tile.tile-position-9-7{transform:translate(480px,360px)}
+.tile.tile-position-9-8{transform:translate(480px,420px)}
+.tile.tile-position-9-9{transform:translate(480px,480px)}
+.tile.tile-position-9-10{transform:translate(480px,540px)}
+.tile.tile-position-9-11{transform:translate(480px,600px)}
+.tile.tile-position-9-12{transform:translate(480px,660px)}
+.tile.tile-position-9-13{transform:translate(480px,720px)}
+.tile.tile-position-9-14{transform:translate(480px,780px)}
+.tile.tile-position-9-15{transform:translate(480px,840px)}
+.tile.tile-position-9-16{transform:translate(480px,900px)}
+.tile.tile-position-10-1{transform:translate(540px,0px)}
+.tile.tile-position-10-2{transform:translate(540px,60px)}
+.tile.tile-position-10-3{transform:translate(540px,120px)}
+.tile.tile-position-10-4{transform:translate(540px,180px)}
+.tile.tile-position-10-5{transform:translate(540px,240px)}
+.tile.tile-position-10-6{transform:translate(540px,300px)}
+.tile.tile-position-10-7{transform:translate(540px,360px)}
+.tile.tile-position-10-8{transform:translate(540px,420px)}
+.tile.tile-position-10-9{transform:translate(540px,480px)}
+.tile.tile-position-10-10{transform:translate(540px,540px)}
+.tile.tile-position-10-11{transform:translate(540px,600px)}
+.tile.tile-position-10-12{transform:translate(540px,660px)}
+.tile.tile-position-10-13{transform:translate(540px,720px)}
+.tile.tile-position-10-14{transform:translate(540px,780px)}
+.tile.tile-position-10-15{transform:translate(540px,840px)}
+.tile.tile-position-10-16{transform:translate(540px,900px)}
+.tile.tile-position-11-1{transform:translate(600px,0px)}
+.tile.tile-position-11-2{transform:translate(600px,60px)}
+.tile.tile-position-11-3{transform:translate(600px,120px)}
+.tile.tile-position-11-4{transform:translate(600px,180px)}
+.tile.tile-position-11-5{transform:translate(600px,240px)}
+.tile.tile-position-11-6{transform:translate(600px,300px)}
+.tile.tile-position-11-7{transform:translate(600px,360px)}
+.tile.tile-position-11-8{transform:translate(600px,420px)}
+.tile.tile-position-11-9{transform:translate(600px,480px)}
+.tile.tile-position-11-10{transform:translate(600px,540px)}
+.tile.tile-position-11-11{transform:translate(600px,600px)}
+.tile.tile-position-11-12{transform:translate(600px,660px)}
+.tile.tile-position-11-13{transform:translate(600px,720px)}
+.tile.tile-position-11-14{transform:translate(600px,780px)}
+.tile.tile-position-11-15{transform:translate(600px,840px)}
+.tile.tile-position-11-16{transform:translate(600px,900px)}
+.tile.tile-position-12-1{transform:translate(660px,0px)}
+.tile.tile-position-12-2{transform:translate(660px,60px)}
+.tile.tile-position-12-3{transform:translate(660px,120px)}
+.tile.tile-position-12-4{transform:translate(660px,180px)}
+.tile.tile-position-12-5{transform:translate(660px,240px)}
+.tile.tile-position-12-6{transform:translate(660px,300px)}
+.tile.tile-position-12-7{transform:translate(660px,360px)}
+.tile.tile-position-12-8{transform:translate(660px,420px)}
+.tile.tile-position-12-9{transform:translate(660px,480px)}
+.tile.tile-position-12-10{transform:translate(660px,540px)}
+.tile.tile-position-12-11{transform:translate(660px,600px)}
+.tile.tile-position-12-12{transform:translate(660px,660px)}
+.tile.tile-position-12-13{transform:translate(660px,720px)}
+.tile.tile-position-12-14{transform:translate(660px,780px)}
+.tile.tile-position-12-15{transform:translate(660px,840px)}
+.tile.tile-position-12-16{transform:translate(660px,900px)}
+.tile.tile-position-13-1{transform:translate(720px,0px)}
+.tile.tile-position-13-2{transform:translate(720px,60px)}
+.tile.tile-position-13-3{transform:translate(720px,120px)}
+.tile.tile-position-13-4{transform:translate(720px,180px)}
+.tile.tile-position-13-5{transform:translate(720px,240px)}
+.tile.tile-position-13-6{transform:translate(720px,300px)}
+.tile.tile-position-13-7{transform:translate(720px,360px)}
+.tile.tile-position-13-8{transform:translate(720px,420px)}
+.tile.tile-position-13-9{transform:translate(720px,480px)}
+.tile.tile-position-13-10{transform:translate(720px,540px)}
+.tile.tile-position-13-11{transform:translate(720px,600px)}
+.tile.tile-position-13-12{transform:translate(720px,660px)}
+.tile.tile-position-13-13{transform:translate(720px,720px)}
+.tile.tile-position-13-14{transform:translate(720px,780px)}
+.tile.tile-position-13-15{transform:translate(720px,840px)}
+.tile.tile-position-13-16{transform:translate(720px,900px)}
+.tile.tile-position-14-1{transform:translate(780px,0px)}
+.tile.tile-position-14-2{transform:translate(780px,60px)}
+.tile.tile-position-14-3{transform:translate(780px,120px)}
+.tile.tile-position-14-4{transform:translate(780px,180px)}
+.tile.tile-position-14-5{transform:translate(780px,240px)}
+.tile.tile-position-14-6{transform:translate(780px,300px)}
+.tile.tile-position-14-7{transform:translate(780px,360px)}
+.tile.tile-position-14-8{transform:translate(780px,420px)}
+.tile.tile-position-14-9{transform:translate(780px,480px)}
+.tile.tile-position-14-10{transform:translate(780px,540px)}
+.tile.tile-position-14-11{transform:translate(780px,600px)}
+.tile.tile-position-14-12{transform:translate(780px,660px)}
+.tile.tile-position-14-13{transform:translate(780px,720px)}
+.tile.tile-position-14-14{transform:translate(780px,780px)}
+.tile.tile-position-14-15{transform:translate(780px,840px)}
+.tile.tile-position-14-16{transform:translate(780px,900px)}
+.tile.tile-position-15-1{transform:translate(840px,0px)}
+.tile.tile-position-15-2{transform:translate(840px,60px)}
+.tile.tile-position-15-3{transform:translate(840px,120px)}
+.tile.tile-position-15-4{transform:translate(840px,180px)}
+.tile.tile-position-15-5{transform:translate(840px,240px)}
+.tile.tile-position-15-6{transform:translate(840px,300px)}
+.tile.tile-position-15-7{transform:translate(840px,360px)}
+.tile.tile-position-15-8{transform:translate(840px,420px)}
+.tile.tile-position-15-9{transform:translate(840px,480px)}
+.tile.tile-position-15-10{transform:translate(840px,540px)}
+.tile.tile-position-15-11{transform:translate(840px,600px)}
+.tile.tile-position-15-12{transform:translate(840px,660px)}
+.tile.tile-position-15-13{transform:translate(840px,720px)}
+.tile.tile-position-15-14{transform:translate(840px,780px)}
+.tile.tile-position-15-15{transform:translate(840px,840px)}
+.tile.tile-position-15-16{transform:translate(840px,900px)}
+.tile.tile-position-16-1{transform:translate(900px,0px)}
+.tile.tile-position-16-2{transform:translate(900px,60px)}
+.tile.tile-position-16-3{transform:translate(900px,120px)}
+.tile.tile-position-16-4{transform:translate(900px,180px)}
+.tile.tile-position-16-5{transform:translate(900px,240px)}
+.tile.tile-position-16-6{transform:translate(900px,300px)}
+.tile.tile-position-16-7{transform:translate(900px,360px)}
+.tile.tile-position-16-8{transform:translate(900px,420px)}
+.tile.tile-position-16-9{transform:translate(900px,480px)}
+.tile.tile-position-16-10{transform:translate(900px,540px)}
+.tile.tile-position-16-11{transform:translate(900px,600px)}
+.tile.tile-position-16-12{transform:translate(900px,660px)}
+.tile.tile-position-16-13{transform:translate(900px,720px)}
+.tile.tile-position-16-14{transform:translate(900px,780px)}
+.tile.tile-position-16-15{transform:translate(900px,840px)}
+.tile.tile-position-16-16{transform:translate(900px,900px)}
+.tile{position:absolute;transition:100ms ease-in-out;transition-property:transform}
+.tile .tile-inner{border-radius:3px;background:#eee4da;text-align:center;font-weight:700;z-index:10;font-size:26px}
+.tile.tile-2 .tile-inner{background:#eee4da;box-shadow:0 0 30px 10px #f3d77400 inset 0 0 0 1px #fff0}
+.tile.tile-4 .tile-inner{background:#ede0c8;box-shadow:0 0 30px 10px #f3d77400 inset 0 0 0 1px #fff0}
+.tile.tile-8 .tile-inner{color:#f9f6f2;background:#f2b179}
+.tile.tile-16 .tile-inner{color:#f9f6f2;background:#f59563}
+.tile.tile-32 .tile-inner{color:#f9f6f2;background:#f67c5f}
+.tile.tile-64 .tile-inner{color:#f9f6f2;background:#f65e3b}
+.tile.tile-128 .tile-inner{color:#f9f6f2;background:#edcf72;font-size:24px}
+@media screen and (max-width: 520px) {
+.tile.tile-128 .tile-inner{font-size:13px}
+}
+.tile.tile-256 .tile-inner{color:#f9f6f2;background:#edcc61;font-size:24px}
+@media screen and (max-width: 520px) {
+.tile.tile-256 .tile-inner{font-size:13px}
+}
+.tile.tile-512 .tile-inner{color:#f9f6f2;background:#edc850;font-size:24px}
+@media screen and (max-width: 520px) {
+.tile.tile-512 .tile-inner{font-size:13px}
+}
+.tile.tile-1024 .tile-inner{color:#f9f6f2;background:#edc53f;font-size:19px}
+@media screen and (max-width: 520px) {
+.tile.tile-1024 .tile-inner{font-size:10px}
+}
+.tile.tile-2048 .tile-inner{color:#f9f6f2;background:#edc22e;font-size:19px}
+@media screen and (max-width: 520px) {
+.tile.tile-2048 .tile-inner{font-size:10px}
+}
+.tile.tile-4096 .tile-inner{color:#f9f6f2;background:#dab6da;font-size:19px}
+@media screen and (max-width: 520px) {
+.tile.tile-4096 .tile-inner{font-size:10px}
+}
+.tile.tile-8192 .tile-inner{color:#f9f6f2;background:#c18bc1;font-size:19px}
+@media screen and (max-width: 520px) {
+.tile.tile-8192 .tile-inner{font-size:10px}
+}
+.tile.tile-16384 .tile-inner{color:#f9f6f2;background:#b26ab3;font-size:16px}
+@media screen and (max-width: 520px) {
+.tile.tile-16384 .tile-inner{font-size:9px}
+}
+.tile.tile-32768 .tile-inner{color:#f9f6f2;background:#930093;font-size:16px}
+@media screen and (max-width: 520px) {
+.tile.tile-32768 .tile-inner{font-size:9px}
+}
+.tile.tile-65536 .tile-inner{color:#f9f6f2;background:#750075;font-size:16px}
+@media screen and (max-width: 520px) {
+.tile.tile-65536 .tile-inner{font-size:9px}
+}
+.tile.tile-131072 .tile-inner{color:#f9f6f2;background:#888ddb;font-size:13px}
+@media screen and (max-width: 520px) {
+.tile.tile-131072 .tile-inner{font-size:7px}
+}
+.tile.tile-262144 .tile-inner{color:#f9f6f2;background:#767cd8;font-size:13px}
+@media screen and (max-width: 520px) {
+.tile.tile-262144 .tile-inner{font-size:7px}
+}
+.tile.tile-524288 .tile-inner{color:#f9f6f2;background:#646cd5;font-size:13px}
+@media screen and (max-width: 520px) {
+.tile.tile-524288 .tile-inner{font-size:7px}
+}
+.tile.tile-1048576 .tile-inner{color:#f9f6f2;background:#525ad0;font-size:11px}
+@media screen and (max-width: 520px) {
+.tile.tile-1048576 .tile-inner{font-size:6px}
+}
+.tile.tile-2097152 .tile-inner{color:#f9f6f2;background:#3f48cc;font-size:11px}
+@media screen and (max-width: 520px) {
+.tile.tile-2097152 .tile-inner{font-size:6px}
+}
+.tile.tile-4194304 .tile-inner{color:#f9f6f2;background:#989898;font-size:11px}
+@media screen and (max-width: 520px) {
+.tile.tile-4194304 .tile-inner{font-size:6px}
+}
+.tile.tile-8388608 .tile-inner{color:#f9f6f2;background:#737373;font-size:11px}
+@media screen and (max-width: 520px) {
+.tile.tile-8388608 .tile-inner{font-size:6px}
+}
+.tile.tile-16777216 .tile-inner{color:#f9f6f2;background:#555;font-size:10px}
+@media screen and (max-width: 520px) {
+.tile.tile-16777216 .tile-inner{font-size:5px}
+}
+.tile.tile-33554432 .tile-inner{color:#f9f6f2;background:#4a4a4a;font-size:10px}
+@media screen and (max-width: 520px) {
+.tile.tile-33554432 .tile-inner{font-size:5px}
+}
+.tile.tile-67108864 .tile-inner{color:#f9f6f2;background:#3e3e3e;font-size:10px}
+@media screen and (max-width: 520px) {
+.tile.tile-67108864 .tile-inner{font-size:5px}
+}
+.tile.tile-134217728 .tile-inner{color:#f9f6f2;background:#323232;font-size:9px}
+@media screen and (max-width: 520px) {
+.tile.tile-134217728 .tile-inner{font-size:4.5px}
+}
+.tile.tile-268435456 .tile-inner{color:#f9f6f2;background:#262626;font-size:9px}
+@media screen and (max-width: 520px) {
+.tile.tile-268435456 .tile-inner{font-size:4.5px}
+}
+.tile.tile-536870912 .tile-inner{color:#f9f6f2;background:#1a1a1a;font-size:9px}
+@media screen and (max-width: 520px) {
+.tile.tile-536870912 .tile-inner{font-size:4.5px}
+}
+.tile.tile-1073741824 .tile-inner{color:#f9f6f2;background:#0d0d0d;font-size:8px}
+@media screen and (max-width: 520px) {
+.tile.tile-1073741824 .tile-inner{font-size:4px}
+}
+.tile.tile-2147483648 .tile-inner{color:#f9f6f2;background:#000;font-size:8px}
+@media screen and (max-width: 520px) {
+.tile.tile-2147483648 .tile-inner{font-size:4px}
+}
+@-webkit-keyframes appear {
+0%{opacity:0;-webkit-transform:scale(0);-moz-transform:scale(0);transform:scale(0)}
+100%{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);transform:scale(1)}
+}
+@-moz-keyframes appear {
+0%{opacity:0;-webkit-transform:scale(0);-moz-transform:scale(0);transform:scale(0)}
+100%{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);transform:scale(1)}
+}
+@keyframes appear {
+0%{opacity:0;-webkit-transform:scale(0);-moz-transform:scale(0);transform:scale(0)}
+100%{opacity:1;-webkit-transform:scale(1);-moz-transform:scale(1);transform:scale(1)}
+}
+.tile-new .tile-inner{-webkit-animation:appear 200ms ease 100ms;-moz-animation:appear 200ms ease 100ms;animation:appear 200ms ease 100ms;-webkit-animation-fill-mode:backwards;-moz-animation-fill-mode:backwards;animation-fill-mode:backwards}
+@-webkit-keyframes pop {
+0%{-webkit-transform:scale(0);-moz-transform:scale(0);transform:scale(0)}
+50%{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);transform:scale(1.2)}
+100%{-webkit-transform:scale(1);-moz-transform:scale(1);transform:scale(1)}
+}
+@-moz-keyframes pop {
+0%{-webkit-transform:scale(0);-moz-transform:scale(0);transform:scale(0)}
+50%{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);transform:scale(1.2)}
+100%{-webkit-transform:scale(1);-moz-transform:scale(1);transform:scale(1)}
+}
+@keyframes pop {
+0%{-webkit-transform:scale(0);-moz-transform:scale(0);transform:scale(0)}
+50%{-webkit-transform:scale(1.2);-moz-transform:scale(1.2);transform:scale(1.2)}
+100%{-webkit-transform:scale(1);-moz-transform:scale(1);transform:scale(1)}
+}
+.tile-merged .tile-inner{z-index:20;-webkit-animation:pop 200ms ease 100ms;-moz-animation:pop 200ms ease 100ms;animation:pop 200ms ease 100ms;-webkit-animation-fill-mode:backwards;-moz-animation-fill-mode:backwards;animation-fill-mode:backwards}
+.above-game:after{content:"";display:block;clear:both}
+.game-intro{float:left;line-height:42px;margin-bottom:0}
+.restart-button,.undo-button{display:inline-block;background:#8f7a66;border-radius:3px;padding:0 20px;text-decoration:none;color:#f9f6f2;height:40px;line-height:42px;cursor:pointer;display:block;text-align:center;float:right;margin-left:4.5px}
+.game-explanation{margin-top:50px}
+.sharing{margin-top:20px;text-align:center}
+.sharing > iframe,.sharing > span,.sharing > form{display:inline-block;vertical-align:middle}
+@media screen and (max-width: 520px) {
+html,body{font-size:15px}
+body{margin-top:0;padding:5px}
+h1.title{font-size:27px;margin-top:15px}
+.container{max-width:350px;margin:0 auto}
+.score-container,.best-container{margin-top:0;padding:15px 10px;min-width:40px}
+.heading{margin-bottom:10px}
+.game-intro{width:55%;display:block;box-sizing:border-box;line-height:1.65}
+.restart-button,.undo-button{display:block;box-sizing:border-box;margin-top:2px}
+.game-container{margin-top:10px;position:relative;padding:5px;cursor:default;-webkit-touch-callout:none;-ms-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-ms-touch-action:none;touch-action:none;background:#978b80;border-radius:6px;width:345px;height:345px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.game-message{display:none;position:absolute;top:0;right:0;bottom:0;left:0;background:#eee4daba;z-index:100;padding-top:40px;text-align:center;-webkit-animation:fade-in 800ms ease 1200ms;-moz-animation:fade-in 800ms ease 1200ms;animation:fade-in 800ms ease 1200ms;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;animation-fill-mode:both}
+.game-message p{font-size:60px;font-weight:700;height:60px;line-height:60px;margin-top:222px}
+.game-message .lower{display:block;margin-top:29px}
+.game-message a{display:inline-block;background:#8f7a66;border-radius:3px;padding:0 20px;text-decoration:none;color:#f9f6f2;height:40px;line-height:42px;cursor:pointer;margin-left:9px}
+.game-message a.keep-playing-button{display:none}
+.game-message .score-sharing{display:inline-block;vertical-align:middle;margin-left:10px}
+.game-message.game-won{background:#edc22e80;color:#f9f6f2}
+.game-message.game-won a.keep-playing-button{display:inline-block}
+.game-message.game-won,.game-message.game-over{display:block}
+.grid-container{position:absolute;z-index:1}
+.grid-row{margin-bottom:5px}
+.grid-row:last-child{margin-bottom:0}
+.grid-row:after{content:"";display:block;clear:both}
+.grid-cell{width:29px;height:29px;margin-right:5px;float:left;border-radius:3px;background:#eee4da59}
+.grid-cell:last-child{margin-right:0}
+.tile-container{position:absolute;z-index:2}
+.tile,.tile .tile-inner{width:29px;height:29px;line-height:29px}
+.tile.tile-position-1-1{transform:translate(0px,0px)}
+.tile.tile-position-1-2{transform:translate(0px,34px)}
+.tile.tile-position-1-3{transform:translate(0px,68px)}
+.tile.tile-position-1-4{transform:translate(0px,102px)}
+.tile.tile-position-1-5{transform:translate(0px,136px)}
+.tile.tile-position-1-6{transform:translate(0px,170px)}
+.tile.tile-position-1-7{transform:translate(0px,204px)}
+.tile.tile-position-1-8{transform:translate(0px,238px)}
+.tile.tile-position-1-9{transform:translate(0px,272px)}
+.tile.tile-position-1-10{transform:translate(0px,306px)}
+.tile.tile-position-1-11{transform:translate(0px,340px)}
+.tile.tile-position-1-12{transform:translate(0px,374px)}
+.tile.tile-position-1-13{transform:translate(0px,408px)}
+.tile.tile-position-1-14{transform:translate(0px,442px)}
+.tile.tile-position-1-15{transform:translate(0px,476px)}
+.tile.tile-position-1-16{transform:translate(0px,510px)}
+.tile.tile-position-2-1{transform:translate(34px,0px)}
+.tile.tile-position-2-2{transform:translate(34px,34px)}
+.tile.tile-position-2-3{transform:translate(34px,68px)}
+.tile.tile-position-2-4{transform:translate(34px,102px)}
+.tile.tile-position-2-5{transform:translate(34px,136px)}
+.tile.tile-position-2-6{transform:translate(34px,170px)}
+.tile.tile-position-2-7{transform:translate(34px,204px)}
+.tile.tile-position-2-8{transform:translate(34px,238px)}
+.tile.tile-position-2-9{transform:translate(34px,272px)}
+.tile.tile-position-2-10{transform:translate(34px,306px)}
+.tile.tile-position-2-11{transform:translate(34px,340px)}
+.tile.tile-position-2-12{transform:translate(34px,374px)}
+.tile.tile-position-2-13{transform:translate(34px,408px)}
+.tile.tile-position-2-14{transform:translate(34px,442px)}
+.tile.tile-position-2-15{transform:translate(34px,476px)}
+.tile.tile-position-2-16{transform:translate(34px,510px)}
+.tile.tile-position-3-1{transform:translate(68px,0px)}
+.tile.tile-position-3-2{transform:translate(68px,34px)}
+.tile.tile-position-3-3{transform:translate(68px,68px)}
+.tile.tile-position-3-4{transform:translate(68px,102px)}
+.tile.tile-position-3-5{transform:translate(68px,136px)}
+.tile.tile-position-3-6{transform:translate(68px,170px)}
+.tile.tile-position-3-7{transform:translate(68px,204px)}
+.tile.tile-position-3-8{transform:translate(68px,238px)}
+.tile.tile-position-3-9{transform:translate(68px,272px)}
+.tile.tile-position-3-10{transform:translate(68px,306px)}
+.tile.tile-position-3-11{transform:translate(68px,340px)}
+.tile.tile-position-3-12{transform:translate(68px,374px)}
+.tile.tile-position-3-13{transform:translate(68px,408px)}
+.tile.tile-position-3-14{transform:translate(68px,442px)}
+.tile.tile-position-3-15{transform:translate(68px,476px)}
+.tile.tile-position-3-16{transform:translate(68px,510px)}
+.tile.tile-position-4-1{transform:translate(102px,0px)}
+.tile.tile-position-4-2{transform:translate(102px,34px)}
+.tile.tile-position-4-3{transform:translate(102px,68px)}
+.tile.tile-position-4-4{transform:translate(102px,102px)}
+.tile.tile-position-4-5{transform:translate(102px,136px)}
+.tile.tile-position-4-6{transform:translate(102px,170px)}
+.tile.tile-position-4-7{transform:translate(102px,204px)}
+.tile.tile-position-4-8{transform:translate(102px,238px)}
+.tile.tile-position-4-9{transform:translate(102px,272px)}
+.tile.tile-position-4-10{transform:translate(102px,306px)}
+.tile.tile-position-4-11{transform:translate(102px,340px)}
+.tile.tile-position-4-12{transform:translate(102px,374px)}
+.tile.tile-position-4-13{transform:translate(102px,408px)}
+.tile.tile-position-4-14{transform:translate(102px,442px)}
+.tile.tile-position-4-15{transform:translate(102px,476px)}
+.tile.tile-position-4-16{transform:translate(102px,510px)}
+.tile.tile-position-5-1{transform:translate(136px,0px)}
+.tile.tile-position-5-2{transform:translate(136px,34px)}
+.tile.tile-position-5-3{transform:translate(136px,68px)}
+.tile.tile-position-5-4{transform:translate(136px,102px)}
+.tile.tile-position-5-5{transform:translate(136px,136px)}
+.tile.tile-position-5-6{transform:translate(136px,170px)}
+.tile.tile-position-5-7{transform:translate(136px,204px)}
+.tile.tile-position-5-8{transform:translate(136px,238px)}
+.tile.tile-position-5-9{transform:translate(136px,272px)}
+.tile.tile-position-5-10{transform:translate(136px,306px)}
+.tile.tile-position-5-11{transform:translate(136px,340px)}
+.tile.tile-position-5-12{transform:translate(136px,374px)}
+.tile.tile-position-5-13{transform:translate(136px,408px)}
+.tile.tile-position-5-14{transform:translate(136px,442px)}
+.tile.tile-position-5-15{transform:translate(136px,476px)}
+.tile.tile-position-5-16{transform:translate(136px,510px)}
+.tile.tile-position-6-1{transform:translate(170px,0px)}
+.tile.tile-position-6-2{transform:translate(170px,34px)}
+.tile.tile-position-6-3{transform:translate(170px,68px)}
+.tile.tile-position-6-4{transform:translate(170px,102px)}
+.tile.tile-position-6-5{transform:translate(170px,136px)}
+.tile.tile-position-6-6{transform:translate(170px,170px)}
+.tile.tile-position-6-7{transform:translate(170px,204px)}
+.tile.tile-position-6-8{transform:translate(170px,238px)}
+.tile.tile-position-6-9{transform:translate(170px,272px)}
+.tile.tile-position-6-10{transform:translate(170px,306px)}
+.tile.tile-position-6-11{transform:translate(170px,340px)}
+.tile.tile-position-6-12{transform:translate(170px,374px)}
+.tile.tile-position-6-13{transform:translate(170px,408px)}
+.tile.tile-position-6-14{transform:translate(170px,442px)}
+.tile.tile-position-6-15{transform:translate(170px,476px)}
+.tile.tile-position-6-16{transform:translate(170px,510px)}
+.tile.tile-position-7-1{transform:translate(204px,0px)}
+.tile.tile-position-7-2{transform:translate(204px,34px)}
+.tile.tile-position-7-3{transform:translate(204px,68px)}
+.tile.tile-position-7-4{transform:translate(204px,102px)}
+.tile.tile-position-7-5{transform:translate(204px,136px)}
+.tile.tile-position-7-6{transform:translate(204px,170px)}
+.tile.tile-position-7-7{transform:translate(204px,204px)}
+.tile.tile-position-7-8{transform:translate(204px,238px)}
+.tile.tile-position-7-9{transform:translate(204px,272px)}
+.tile.tile-position-7-10{transform:translate(204px,306px)}
+.tile.tile-position-7-11{transform:translate(204px,340px)}
+.tile.tile-position-7-12{transform:translate(204px,374px)}
+.tile.tile-position-7-13{transform:translate(204px,408px)}
+.tile.tile-position-7-14{transform:translate(204px,442px)}
+.tile.tile-position-7-15{transform:translate(204px,476px)}
+.tile.tile-position-7-16{transform:translate(204px,510px)}
+.tile.tile-position-8-1{transform:translate(238px,0px)}
+.tile.tile-position-8-2{transform:translate(238px,34px)}
+.tile.tile-position-8-3{transform:translate(238px,68px)}
+.tile.tile-position-8-4{transform:translate(238px,102px)}
+.tile.tile-position-8-5{transform:translate(238px,136px)}
+.tile.tile-position-8-6{transform:translate(238px,170px)}
+.tile.tile-position-8-7{transform:translate(238px,204px)}
+.tile.tile-position-8-8{transform:translate(238px,238px)}
+.tile.tile-position-8-9{transform:translate(238px,272px)}
+.tile.tile-position-8-10{transform:translate(238px,306px)}
+.tile.tile-position-8-11{transform:translate(238px,340px)}
+.tile.tile-position-8-12{transform:translate(238px,374px)}
+.tile.tile-position-8-13{transform:translate(238px,408px)}
+.tile.tile-position-8-14{transform:translate(238px,442px)}
+.tile.tile-position-8-15{transform:translate(238px,476px)}
+.tile.tile-position-8-16{transform:translate(238px,510px)}
+.tile.tile-position-9-1{transform:translate(272px,0px)}
+.tile.tile-position-9-2{transform:translate(272px,34px)}
+.tile.tile-position-9-3{transform:translate(272px,68px)}
+.tile.tile-position-9-4{transform:translate(272px,102px)}
+.tile.tile-position-9-5{transform:translate(272px,136px)}
+.tile.tile-position-9-6{transform:translate(272px,170px)}
+.tile.tile-position-9-7{transform:translate(272px,204px)}
+.tile.tile-position-9-8{transform:translate(272px,238px)}
+.tile.tile-position-9-9{transform:translate(272px,272px)}
+.tile.tile-position-9-10{transform:translate(272px,306px)}
+.tile.tile-position-9-11{transform:translate(272px,340px)}
+.tile.tile-position-9-12{transform:translate(272px,374px)}
+.tile.tile-position-9-13{transform:translate(272px,408px)}
+.tile.tile-position-9-14{transform:translate(272px,442px)}
+.tile.tile-position-9-15{transform:translate(272px,476px)}
+.tile.tile-position-9-16{transform:translate(272px,510px)}
+.tile.tile-position-10-1{transform:translate(306px,0px)}
+.tile.tile-position-10-2{transform:translate(306px,34px)}
+.tile.tile-position-10-3{transform:translate(306px,68px)}
+.tile.tile-position-10-4{transform:translate(306px,102px)}
+.tile.tile-position-10-5{transform:translate(306px,136px)}
+.tile.tile-position-10-6{transform:translate(306px,170px)}
+.tile.tile-position-10-7{transform:translate(306px,204px)}
+.tile.tile-position-10-8{transform:translate(306px,238px)}
+.tile.tile-position-10-9{transform:translate(306px,272px)}
+.tile.tile-position-10-10{transform:translate(306px,306px)}
+.tile.tile-position-10-11{transform:translate(306px,340px)}
+.tile.tile-position-10-12{transform:translate(306px,374px)}
+.tile.tile-position-10-13{transform:translate(306px,408px)}
+.tile.tile-position-10-14{transform:translate(306px,442px)}
+.tile.tile-position-10-15{transform:translate(306px,476px)}
+.tile.tile-position-10-16{transform:translate(306px,510px)}
+.tile.tile-position-11-1{transform:translate(340px,0px)}
+.tile.tile-position-11-2{transform:translate(340px,34px)}
+.tile.tile-position-11-3{transform:translate(340px,68px)}
+.tile.tile-position-11-4{transform:translate(340px,102px)}
+.tile.tile-position-11-5{transform:translate(340px,136px)}
+.tile.tile-position-11-6{transform:translate(340px,170px)}
+.tile.tile-position-11-7{transform:translate(340px,204px)}
+.tile.tile-position-11-8{transform:translate(340px,238px)}
+.tile.tile-position-11-9{transform:translate(340px,272px)}
+.tile.tile-position-11-10{transform:translate(340px,306px)}
+.tile.tile-position-11-11{transform:translate(340px,340px)}
+.tile.tile-position-11-12{transform:translate(340px,374px)}
+.tile.tile-position-11-13{transform:translate(340px,408px)}
+.tile.tile-position-11-14{transform:translate(340px,442px)}
+.tile.tile-position-11-15{transform:translate(340px,476px)}
+.tile.tile-position-11-16{transform:translate(340px,510px)}
+.tile.tile-position-12-1{transform:translate(374px,0px)}
+.tile.tile-position-12-2{transform:translate(374px,34px)}
+.tile.tile-position-12-3{transform:translate(374px,68px)}
+.tile.tile-position-12-4{transform:translate(374px,102px)}
+.tile.tile-position-12-5{transform:translate(374px,136px)}
+.tile.tile-position-12-6{transform:translate(374px,170px)}
+.tile.tile-position-12-7{transform:translate(374px,204px)}
+.tile.tile-position-12-8{transform:translate(374px,238px)}
+.tile.tile-position-12-9{transform:translate(374px,272px)}
+.tile.tile-position-12-10{transform:translate(374px,306px)}
+.tile.tile-position-12-11{transform:translate(374px,340px)}
+.tile.tile-position-12-12{transform:translate(374px,374px)}
+.tile.tile-position-12-13{transform:translate(374px,408px)}
+.tile.tile-position-12-14{transform:translate(374px,442px)}
+.tile.tile-position-12-15{transform:translate(374px,476px)}
+.tile.tile-position-12-16{transform:translate(374px,510px)}
+.tile.tile-position-13-1{transform:translate(408px,0px)}
+.tile.tile-position-13-2{transform:translate(408px,34px)}
+.tile.tile-position-13-3{transform:translate(408px,68px)}
+.tile.tile-position-13-4{transform:translate(408px,102px)}
+.tile.tile-position-13-5{transform:translate(408px,136px)}
+.tile.tile-position-13-6{transform:translate(408px,170px)}
+.tile.tile-position-13-7{transform:translate(408px,204px)}
+.tile.tile-position-13-8{transform:translate(408px,238px)}
+.tile.tile-position-13-9{transform:translate(408px,272px)}
+.tile.tile-position-13-10{transform:translate(408px,306px)}
+.tile.tile-position-13-11{transform:translate(408px,340px)}
+.tile.tile-position-13-12{transform:translate(408px,374px)}
+.tile.tile-position-13-13{transform:translate(408px,408px)}
+.tile.tile-position-13-14{transform:translate(408px,442px)}
+.tile.tile-position-13-15{transform:translate(408px,476px)}
+.tile.tile-position-13-16{transform:translate(408px,510px)}
+.tile.tile-position-14-1{transform:translate(442px,0px)}
+.tile.tile-position-14-2{transform:translate(442px,34px)}
+.tile.tile-position-14-3{transform:translate(442px,68px)}
+.tile.tile-position-14-4{transform:translate(442px,102px)}
+.tile.tile-position-14-5{transform:translate(442px,136px)}
+.tile.tile-position-14-6{transform:translate(442px,170px)}
+.tile.tile-position-14-7{transform:translate(442px,204px)}
+.tile.tile-position-14-8{transform:translate(442px,238px)}
+.tile.tile-position-14-9{transform:translate(442px,272px)}
+.tile.tile-position-14-10{transform:translate(442px,306px)}
+.tile.tile-position-14-11{transform:translate(442px,340px)}
+.tile.tile-position-14-12{transform:translate(442px,374px)}
+.tile.tile-position-14-13{transform:translate(442px,408px)}
+.tile.tile-position-14-14{transform:translate(442px,442px)}
+.tile.tile-position-14-15{transform:translate(442px,476px)}
+.tile.tile-position-14-16{transform:translate(442px,510px)}
+.tile.tile-position-15-1{transform:translate(476px,0px)}
+.tile.tile-position-15-2{transform:translate(476px,34px)}
+.tile.tile-position-15-3{transform:translate(476px,68px)}
+.tile.tile-position-15-4{transform:translate(476px,102px)}
+.tile.tile-position-15-5{transform:translate(476px,136px)}
+.tile.tile-position-15-6{transform:translate(476px,170px)}
+.tile.tile-position-15-7{transform:translate(476px,204px)}
+.tile.tile-position-15-8{transform:translate(476px,238px)}
+.tile.tile-position-15-9{transform:translate(476px,272px)}
+.tile.tile-position-15-10{transform:translate(476px,306px)}
+.tile.tile-position-15-11{transform:translate(476px,340px)}
+.tile.tile-position-15-12{transform:translate(476px,374px)}
+.tile.tile-position-15-13{transform:translate(476px,408px)}
+.tile.tile-position-15-14{transform:translate(476px,442px)}
+.tile.tile-position-15-15{transform:translate(476px,476px)}
+.tile.tile-position-15-16{transform:translate(476px,510px)}
+.tile.tile-position-16-1{transform:translate(510px,0px)}
+.tile.tile-position-16-2{transform:translate(510px,34px)}
+.tile.tile-position-16-3{transform:translate(510px,68px)}
+.tile.tile-position-16-4{transform:translate(510px,102px)}
+.tile.tile-position-16-5{transform:translate(510px,136px)}
+.tile.tile-position-16-6{transform:translate(510px,170px)}
+.tile.tile-position-16-7{transform:translate(510px,204px)}
+.tile.tile-position-16-8{transform:translate(510px,238px)}
+.tile.tile-position-16-9{transform:translate(510px,272px)}
+.tile.tile-position-16-10{transform:translate(510px,306px)}
+.tile.tile-position-16-11{transform:translate(510px,340px)}
+.tile.tile-position-16-12{transform:translate(510px,374px)}
+.tile.tile-position-16-13{transform:translate(510px,408px)}
+.tile.tile-position-16-14{transform:translate(510px,442px)}
+.tile.tile-position-16-15{transform:translate(510px,476px)}
+.tile.tile-position-16-16{transform:translate(510px,510px)}
+.tile .tile-inner{font-size:15px}
+.game-message{padding-top:0}
+.game-message p{font-size:30px!important;height:30px!important;line-height:30px!important;margin-top:32%!important;margin-bottom:0!important}
+.game-message .lower{margin-top:10px!important}
+.game-message.game-won .score-sharing{margin-top:10px}
+.sharing > iframe,.sharing > span,.sharing > form{display:block;margin:0 auto;margin-bottom:20px}
+}
+.above-game{margin-top:20px}
+.block{display:flex;justify-content:center;align-items:center;margin:0 auto}
+.block-300{display:none;width:100%;height:250px;background-color:#8f7a66}
+.block-728{display:none;width:100%;max-width:728px;height:90px;background-color:#8f7a66}
+@media only screen and (max-width: 738px) {
+.block-300{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:10px;border-radius:10px;margin-top:10px}
+.block-728{display:none}
+}
+@media only screen and (min-width: 739px) {
+.block-728{display:flex;justify-content:center;align-items:center;margin-bottom:10px;border-radius:10px;margin-top:10px}
+.block-300{display:none}
+}
+ul.unstyled.tips-and-tricks{list-style:none;padding:0;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1200px}
+ul.unstyled.tips-and-tricks li{background:#f8f5ef;border-radius:10px;padding:16px;box-shadow:0 2px 6px #00000014;transition:transform .2s ease,box-shadow .2s ease;font-size:16px;line-height:1.5;color:#333}
+ul.unstyled.tips-and-tricks li:hover{transform:translateY(-4px);box-shadow:0 6px 12px #0000001f}
+@media (max-width: 600px) {
+ul.unstyled.tips-and-tricks{grid-template-columns:1fr}
+}
+@media (min-width: 601px) and (max-width: 992px) {
+ul.unstyled.tips-and-tricks{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+}
+@media (min-width: 993px) {
+ul.unstyled.tips-and-tricks{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+}
+.auto-move{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:20px auto;font-size:16px;font-weight:600;color:#776e65}
+.auto-move button{background:#8f7a66;color:#f9f6f2;border:none;border-radius:6px;padding:8px 14px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s ease-in-out;flex:1 1 auto;min-width:90px;text-align:center}
+.auto-move button:hover{background:#9c8571;transform:translateY(-2px);box-shadow:0 3px 6px #0003}
+.auto-move button:active{transform:translateY(0);box-shadow:none}
+@media (max-width: 520px) {
+.auto-move{flex-direction:column;gap:10px;font-size:14px}
+.auto-move button{width:100%;font-size:14px;padding:10px}
+}
+.undo-button{display:inline-block;background:#8f7a66;border-radius:3px;padding:0 20px;text-decoration:none;color:#f9f6f2;height:40px;line-height:42px;cursor:pointer;text-align:center;float:left;margin-left:4.5px;font-weight:700;font-size:16px;border:none;outline:none;transition:background .2s}
+.undo-button:hover{background:#9c8571}
+</style>
+</head>
+<body>
+<script>
+    if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/sw.js')
+    .then(registration => {console.log('Service Worker registered successfully:', registration);})
+    .catch(error => {console.log('Error in Service Worker registration:', error);});});}
+    </script>
+<div class="container">
+    <div class="heading">
+         <h1 class="title">2048 ∞</h1>
+
+        <div class="scores-container">
+            <div class="score-container">0</div>
+            <div class="best-container">0</div>
+        </div>
+    </div>
+    <div class="above-game">
+        <p class="game-intro">Join the numbers & get to the <strong>∞ tile!</strong>
+
+        </p>
+        <a class="restart-button">New Game</a>
+       <a class="undo-button">Undo</a>
+
+    </div>
+    <div class="game-container">
+        <div class="game-message">
+            <p></p>
+            <div class="lower"> <a class="keep-playing-button">Keep going</a>
+ <a class="retry-button">Try again</a>
+
+                <div class="score-sharing"></div>
+            </div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-row">
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                
+            </div>
+            <div class="grid-row">
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+               <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+               <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+               <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+               <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+               <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+               <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+            <div class="grid-row">
+               <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+                <div class="grid-cell"></div>
+            </div>
+
+        </div>
+        <div class="tile-container"></div>
+
+    </div>
+    
+   
+    <hr>
+<p class="auto-move">
+  Auto move:
+  <button name="automove" type="button" onclick="doMovementPattern(corner);">Corner</button>
+  <button name="automove" type="button" onclick="doMovementPattern(swing);">Swing</button>
+  <button name="automove" type="button" onclick="doMovementPattern(swirl);">Swirl</button>
+  <button name="automove" type="button" onclick="doMovementPattern(random);">Random</button>
+  <button type="button" onclick="stopMovement();">Stop</button>
+</p>
+
+</div>
+
+ <p class="game-explanation">
+      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+    </p>
+    <hr>
+    <div class="block block-728"><script type="text/javascript">
+     atOptions = {
+       'key' : 'd1d26e15f7c349fd8e403bb5ea491a31',
+       'format' : 'iframe',
+       'height' : 90,
+       'width' : 728,
+       'params' : {}
+     };
+   </script>
+   <script type="text/javascript" src="//www.highperformanceformat.com/d1d26e15f7c349fd8e403bb5ea491a31/invoke.js"></script></div>
+       <hr>
+    
+<ul class="unstyled tips-and-tricks" style="text-align: center;">
+<li><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-online/">2048 Online</a></li>
+<li class="even"><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/doge2048/">2048 Doge</a></li>
+<li><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-3x3/">2048 3x3</a></li>
+<li class="even"><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-5x5/">2048 5x5</a></li>
+<li><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-6x6/">2048 6x6</a></li>
+<li class="even"><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-flappy/">2048 Flappy</a></li>
+<li><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-ai/">2048 vs AI</a></li>
+<li class="even"><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-one-piece/">2048 One Piece</a></li>
+<li><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-tetris/">2048 Tetris</a></li>
+<li class="even"><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-minecraft/">2048 Minecraft</a></li>
+<li><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-mario/">2048 Mario</a></li>
+<li class="even"><a target="_blank" rel="noopener" href="https://kaloodinaz.github.io/2048-reverse/">2048 Reverse</a></li>
+</ul>
+<hr>
+
+       <p><strong>2048 Unlimited</strong> is an extended version of the classic <a href="https://kaloodinaz.github.io/game/2048/" target="_blank">2048 game</a>, featuring a 10x10 grid instead of the standard 4x4 board. This variation allows for a more strategic approach to merging tiles, making it a great option for players who enjoy longer gameplay sessions.</p>
+    <hr>
+    <p>
+      This 10 x 10 fast paced version by <a target="_blank" href="https://kaloodinaz.github.io/">Kaloo Dinaz</a> was cloned from
+      the "non-official" <a target="_blank" href="https://kaloodinaz.github.io/2048-online/">2048 game</a> authored by
+      <a target="_blank" href="https://github.com/kaloodinaz/">Kaloo Dinaz</a>.
+    </p>
+  </div>
+
+<script src="https://cdn.counter.dev/script.js" data-id="74211804-62e3-41a8-9f09-2f1eac9640fb" data-utcoffset="2"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
